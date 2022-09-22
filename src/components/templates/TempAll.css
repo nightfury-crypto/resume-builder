@@ -1,0 +1,16 @@
+
+.templateall {
+    width: 100%;
+    height: 100vh;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    overflow-y: auto !important;
+    padding: 10px;
+    position: relative;
+}
+
+.templateall > div:not(.templateall > div:last-child) {
+    margin-right: 20px;
+}

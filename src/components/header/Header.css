@@ -1,0 +1,70 @@
+.header {
+    width: 100%;
+    height: 70px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+}
+.header > .left {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+.header > .left > .logo {
+    width: 50px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.header > .left > h5 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px;
+    font-size: 20px;
+    position: relative;
+}
+
+.header > .left > h5 span:first-child {
+    font-family: 'Combo', cursive;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+.header > .left > h5 span:last-child {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 0.7em;
+}
+
+
+/* right pannel */
+.right > ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+}
+
+.right > ul > li {
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    font-size: 0.8em;
+    padding: 8px 20px;
+    border-radius: 8px;
+}
+
+.right > ul > li:not(li:last-child) {
+    margin-right: 10px;
+}
+
+.right > ul > .selected {
+    background-color: rgb(11, 4, 4);
+    color: #fff;
+    font-weight: 600;
+}
