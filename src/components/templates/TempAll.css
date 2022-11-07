@@ -1,16 +1,38 @@
-
 .templateall {
     width: 100%;
-    height: 100vh;
-    background-color: #f8f8f8;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    overflow-y: auto !important;
-    padding: 10px;
     position: relative;
+    height: 88%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 8px;
+    background-color: #f8f8f8;
+    flex-direction: column;
 }
 
-.templateall > div:not(.templateall > div:last-child) {
-    margin-right: 20px;
+.tempall__content::-webkit-scrollbar {
+   width: 4px !important;
+}
+
+.templateall > .temptop {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.templateall > .temptop > .MuiSvgIcon-root {
+    position: sticky;
+    top: 10px;
+    margin-left: 20px ;
+    width: fit-content !important;
+    height: fit-content !important;
+}
+
+.tempall__content {
+    overflow-y: auto;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
 }

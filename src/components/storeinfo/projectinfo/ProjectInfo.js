@@ -1,25 +1,70 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import './ProjectInfo.css';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Alert } from '@mui/material';
+import { doc, updateDoc } from 'firebase/firestore';
+import db, { auth } from '../../../firebase-setup/firebase';
 
-const ProjectInfo = () => {
+const ProjectInfo = ({ setSave, save, userInfoData }) => {
     const [projectTitle, setProjectTitle] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
     const [projectLiveLink, setProjectLiveLink] = useState('')
     const [projectSourceLink, setProjectSourceLink] = useState('')
     const [educationActiveChip, setEducationActiveChip] = useState('new')
     const [socialLinkpdateIndex, setSocialLinkpdateIndex] = useState('0')
-    const [projectInfoAll, setprojectInfoAll] = useState([
-        { ptitle: 'Ecommerce Website', pdescription: 'Ecomerce web app using ReactJs and redux with lit design.', 
-        pLiveLink: 'https://www.google.com', pSourceCode: 'https://www.github.com/nightfury-crypto' },
-        { ptitle: 'Chat app', pdescription: 'Chat web app using ReactJs and redux with lit design.', 
-        pLiveLink: 'https://www.google.com', pSourceCode: 'https://www.github.com/nightfury-crypto' },
-        
-    ])
+    const [projectInfoAll, setprojectInfoAll] = useState([])
+
+    const [user] = useAuthState(auth);
+
+    useEffect(() => {
+        if (userInfoData) {
+            const projectDetailsFirebase = userInfoData?.ProjectInfoDetails?.projectarray
+            
+            setProjectTitle(projectDetailsFirebase?.ptitle || '')
+            setProjectDescription(projectDetailsFirebase?.pdesc || '')
+            setProjectLiveLink(projectDetailsFirebase?.plive || '')
+            setProjectSourceLink(projectDetailsFirebase?.psrc || '')
+            setprojectInfoAll(projectDetailsFirebase || '')
+        }
+    }, [userInfoData])
+
+    // save education details in database user logged in details
+    async function addDetails() {
+        if (user) {
+            const userEmail = user.email;
+            // user-details
+            try {
+                // Add a new document in collection "cities"
+                await updateDoc(doc(db, "user-details", userEmail), {
+                    ProjectInfoDetails: {
+                        projectarray: projectInfoAll,
+                        sectionType: 'Project'
+                    },
+                });
+                setSave(true)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        setTimeout(() => {
+            setSave(false)
+        }, 2000)
+    }
+    // add Education Details
+    const addProjectDetails = () => {
+        if (projectTitle) {
+            setprojectInfoAll(oldArray => [...oldArray, { ptitle: projectTitle, pdesc: projectDescription, plive: projectLiveLink, psrc: projectSourceLink }])
+        }
+        setProjectTitle('')
+        setProjectDescription('')
+        setProjectLiveLink('')
+        setProjectSourceLink('')
+    }
 
     // handle display of education details
     const handlechipdisplay = (chipTitle, chipSchool, chipIndex) => {
-        console.log(chipTitle)
+        console.log(chipTitle, chipSchool, chipIndex)
     }
     // delete chip from list
     const deleteEducationchip = (chipIndex) => {
@@ -28,6 +73,9 @@ const ProjectInfo = () => {
 
     return (
         <div className="bottom">
+            {save && <Alert severity="success" color="info" className="savealert">
+                saved successfully!
+            </Alert>}
             <div className="bottom-left data">
                 {/* TITLE */}
                 <span>
@@ -59,7 +107,9 @@ const ProjectInfo = () => {
                 </span>
 
                 {/* button to add */}
-                <button className="simpleButton">ADD</button>
+                <button className="simpleButton" onClick={addProjectDetails}
+                    style={{ backgroundColor: 'rgba(66, 55, 123, 0.7)', color: '#fff' }}>ADD</button>
+
                 <span></span> {/* empty span for a gap in mobile view  */}
             </div>
             <div className="bottom-right">
@@ -77,16 +127,19 @@ const ProjectInfo = () => {
                                 <span onClick={() => {
                                     setEducationActiveChip(preview.ptitle);
                                     setSocialLinkpdateIndex(i)
-                                    handlechipdisplay(preview.ptitle, preview.pdescription, i)
+                                    handlechipdisplay(preview.ptitle, preview.pdesc, i)
                                 }}>
                                     <span >{`Title : ${preview.ptitle}`}</span>
-                                    <span>{`Description : ${preview.pdescription}`}</span>
-                                    <span>{`Live : `}<a href={preview.pLiveLink} target="_blank" rel="noreferrer">{preview.pLiveLink}</a></span>
-                                    <span>{`Code src : `}<a href={preview.pSourceCode} target="_blank" rel="noreferrer">{preview.pSourceCode}</a></span>
+                                    <span>{`Description : ${preview.pdesc}`}</span>
+                                    <span>{`Live : `}<a href={preview.plive} target="_blank" rel="noreferrer">{preview.plive}</a></span>
+                                    <span>{`Code src : `}<a href={preview.psrc} target="_blank" rel="noreferrer">{preview.psrc}</a></span>
                                 </span>
                                 <CloseIcon onClick={() => { deleteEducationchip(i); }} />
                             </div>)}
+                            <div style={{ paddingBottom: '30px' }}></div>
                     </div>}
+                
+                <button className="simpleButton" onClick={addDetails}>SAVE</button>
                 <div style={{ paddingBottom: '30px' }}></div>
             </div>
         </div>

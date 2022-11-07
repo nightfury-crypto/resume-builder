@@ -1,9 +1,158 @@
 .template1 {
     width: 100%;
-    max-width: 800px;
-    height: 100%;
-    min-height: 297mm;
+    max-width: 850px;
+    height: fit-content;
     background-color: #fff;
-    padding: 30px;
-    position: relative;
+    padding: 20px 30px;
+    position: relative; 
+}
+
+.general {
+    width: 100%;
+    height: fit-content;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.general > h3 {
+    font-size: 2em;
+    margin-top: 20px;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+
+.general > p {
+    font-size: 1.3em;
+}
+
+.subhead {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.general a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.general > span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.15em;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.general .MuiSvgIcon-root  {
+    font-size: 1.6em;
+    margin-right: 2px;
+}
+
+.belowdata {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.belowdata > div {
+    width: 100%;
+    max-width: 365px;
+    margin-bottom: 16px;
+}
+
+.education {
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+.top {
+    width: 90%;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+.top > .MuiSvgIcon-root {
+    font-size: 2em !important;
+    margin-top: -6px;
+    
+}
+
+.top > h3 {
+    font-size: 1.8em;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+.projects {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.contentdata {
+    margin-bottom: 6px;
+    width: 90%;
+}
+.contentdata > h5 {
+    font-weight: 800;
+}
+.contentdata > span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.pdesc > h5 {
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+.pdesc > h6 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 1.2em;
+}
+
+.plink {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    padding: 0px;
+    padding-left: 3px;
+    margin: 0;
+    margin-top: -6px;
+    font-weight: 600;
+}
+
+.pdesc > p {
+    padding: 0;
+    margin: 0;
 }

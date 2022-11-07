@@ -109,6 +109,9 @@
 }
 .chips > span {
     padding: 6px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .chips>.MuiSvgIcon-root {
@@ -124,7 +127,10 @@
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
-
+.chips > span > .MuiSvgIcon-root {
+    font-size: 1.5em;
+    margin-right: 4px;
+}
 .chipsAll>.chipactive {
     background-color: rgb(210, 255, 229);
 }
@@ -163,4 +169,14 @@ input {
     width: 100%;
     background-color: rgb(255, 145, 145);
     left: 0;
+}
+
+.displaypfp {
+    place-items: center !important;
+}
+
+.displaypfp > img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }

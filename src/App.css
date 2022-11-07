@@ -7,7 +7,7 @@
   }
 
 @media screen and (max-width: 720px) {
-    .header > .right {
+    .header > .right>ul:first-child {
         display: none;
     }
 }
